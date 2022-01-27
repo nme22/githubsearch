@@ -1,5 +1,22 @@
 import React from 'react';
+import { Heading, HStack, IconButton, useColorMode } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Navbar() {
-  return <h2>Github Search App</h2>;
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <HStack spacing="auto" bgColor="blue.300">
+      <Heading size="md" fontFamily="mono">
+        Github Search App
+      </Heading>
+      <IconButton
+        icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
+        isRound="true"
+        size="md"
+        onClick={toggleColorMode}
+        alignSelf="flex-end"
+        bgColor="blue.300"
+      />
+    </HStack>
+  );
 }

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SearchGithub from '../components/Search';
 
 export default function Home() {
   return (
@@ -9,8 +10,9 @@ export default function Home() {
           name="description"
           content="A app that lets you search github repos"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <SearchGithub />
     </div>
   );
 }
