@@ -11,8 +11,6 @@ export default function Home() {
           content="A app that lets you search github repos"
         />
       </Head>
-
-      <SearchGithub />
     </div>
   );
 }
