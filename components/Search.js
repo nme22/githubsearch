@@ -1,28 +1,20 @@
 import React from 'react';
-import { Input, Box, Text, Divider, Button, VStack } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { Input, Box, Text, Divider, Button } from '@chakra-ui/react';
+import { useState } from 'react';
+
 export default function SearchGithub() {
   const [username, setUsername] = useState('');
   const [data, setData] = useState('');
-  const [githubData, setGithubData] = useState('');
 
-  function handleGithubSearch() {
-    fetch(`https://api.github.com/search/users/` + `${username}`, {
+  async function handleGithubSearch() {
+    fetch('/api/github', {
       method: 'POST',
-      body: JSON.stringify({ username }),
+      body: JSON.stringify(username),
     })
       .then((response) => response.json())
-      .then((data) => setGithubData(data));
+      .then((data) => setData(data));
     console.log(data);
   }
-  //   useEffect(() => {
-  //     fetch(`https://api.github.com/search/users?q=` + { username })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setData(data);
-  //         console.log(data);
-  //       });
-  //   }, []);
 
   function handleUsername(e) {
     setUsername(e.target.value);
@@ -46,7 +38,7 @@ export default function SearchGithub() {
         Search
       </Button>
 
-      {data.login}
+      <h1> {data.login} </h1>
     </Box>
   );
 }

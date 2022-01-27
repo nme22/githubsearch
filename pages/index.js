@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import SearchGithub from '../components/Search';
 
 export default function Home() {
   return (
