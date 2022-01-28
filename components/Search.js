@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   Input,
-  Box,
   Text,
-  Divider,
   Button,
   Avatar,
   Heading,
@@ -13,19 +11,20 @@ import {
   ListItem,
   ListIcon,
   Link,
+  useToast,
 } from '@chakra-ui/react';
 import { LinkIcon, ViewIcon } from '@chakra-ui/icons';
-import { FaStar, FaLocationArrow } from 'react-icons/fa';
+import { FaStar, FaLocationArrow, FaFolderOpen } from 'react-icons/fa';
 
 import { useState } from 'react';
 
 export default function SearchGithub() {
   const [username, setUsername] = useState('');
   const [data, setData] = useState({});
+  const toast = useToast();
 
   async function handleGithubSearch() {
-    /// Clean this up a little later there guy
-    await fetch('/api/github', {
+    fetch('/api/github', {
       method: 'POST',
       body: JSON.stringify(username),
     })
@@ -39,9 +38,9 @@ export default function SearchGithub() {
   }
 
   return (
-    <Box>
-      <Text fontSize="lg"> Search for Github Repositories!</Text>
-      <Divider />
+    <VStack>
+      <Heading size="lg"> Search for Github Repositories!</Heading>
+
       <Input
         placeholder="Enter a github username"
         onChange={handleUsername}
@@ -50,7 +49,7 @@ export default function SearchGithub() {
       />
       <Button
         colorScheme="telegram"
-        position="absolute"
+        position="relative"
         ml="3px"
         onClick={handleGithubSearch}
       >
@@ -72,11 +71,19 @@ export default function SearchGithub() {
             alignSelf="center"
             size="3xl"
             borderWidth="thin"
+            borderColor="black"
           />
-          <Heading fontSize="lg" fontFamily="fantasy" fontStyle="oblique">
+          <Heading fontSize="lg" fontFamily="mono" fontStyle="oblique">
             {data.data.name}
           </Heading>
-          <List bgColor="whiteAlpha.400" spacing="4px" borderRadius="md">
+          <List
+            bgColor="whiteAlpha.400"
+            spacing="4px"
+            borderRadius="md"
+            w="full"
+            borderColor="whiteAlpha.400"
+            borderWidth="2px"
+          >
             <ListItem>
               <ListIcon as={FaLocationArrow} />
               {data.data.location}
@@ -93,6 +100,10 @@ export default function SearchGithub() {
               <ListIcon as={FaStar} />
               {data.data.starred_url.length}
             </ListItem>
+            <ListItem>
+              <ListIcon as={FaFolderOpen} />
+              Public Repos: {data.data.public_repos}
+            </ListItem>
           </List>
           <Container>
             <Text fontWeight="bold" fontFamily="fantasy">
@@ -101,6 +112,6 @@ export default function SearchGithub() {
           </Container>
         </VStack>
       ) : null}
-    </Box>
+    </VStack>
   );
 }
