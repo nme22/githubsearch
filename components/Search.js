@@ -15,6 +15,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { LinkIcon, ViewIcon } from '@chakra-ui/icons';
+import { FaStar, FaLocationArrow } from 'react-icons/fa';
 
 import { useState } from 'react';
 
@@ -49,7 +50,7 @@ export default function SearchGithub() {
       />
       <Button
         colorScheme="telegram"
-        position="fixed"
+        position="absolute"
         ml="3px"
         onClick={handleGithubSearch}
       >
@@ -60,7 +61,7 @@ export default function SearchGithub() {
         <VStack
           p={2}
           m={2}
-          size="md"
+          w="full"
           bgColor="blue.400"
           borderRadius="lg"
           borderWidth="thick"
@@ -69,16 +70,28 @@ export default function SearchGithub() {
           <Avatar
             src={data.data.avatar_url}
             alignSelf="center"
-            size="2xl"
+            size="3xl"
             borderWidth="thin"
           />
-          <Heading fontSize="lg" fontFamily="fantasy">
+          <Heading fontSize="lg" fontFamily="fantasy" fontStyle="oblique">
             {data.data.name}
           </Heading>
-          <List bgColor="whiteAlpha.400">
+          <List bgColor="whiteAlpha.400" spacing="4px" borderRadius="md">
+            <ListItem>
+              <ListIcon as={FaLocationArrow} />
+              {data.data.location}
+            </ListItem>
             <ListItem>
               <ListIcon as={LinkIcon} />
               <Link href={data.data.html_url}> {data.data.html_url}</Link>
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ViewIcon} />
+              Followers: {data.data.followers}
+            </ListItem>
+            <ListItem>
+              <ListIcon as={FaStar} />
+              {data.data.starred_url.length}
             </ListItem>
           </List>
           <Container>
