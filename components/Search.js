@@ -11,7 +11,9 @@ import {
   ListItem,
   ListIcon,
   Link,
-  useToast,
+  HStack,
+  Divider,
+  Wrap,
 } from '@chakra-ui/react';
 import { LinkIcon, ViewIcon } from '@chakra-ui/icons';
 import { FaStar, FaLocationArrow, FaFolderOpen } from 'react-icons/fa';
@@ -21,7 +23,6 @@ import { useState } from 'react';
 export default function SearchGithub() {
   const [username, setUsername] = useState('');
   const [data, setData] = useState({});
-  const toast = useToast();
 
   async function handleGithubSearch() {
     fetch('/api/github', {
@@ -38,51 +39,56 @@ export default function SearchGithub() {
   }
 
   return (
-    <VStack>
+    <VStack w={{ base: '90%', md: '80%', lg: '60%' }}>
       <Heading size="lg"> Search for Github Repositories!</Heading>
-
-      <Input
-        placeholder="Enter a github username"
-        onChange={handleUsername}
-        value={username}
-        position="relative"
-      />
-      <Button
-        colorScheme="telegram"
-        position="relative"
-        ml="3px"
-        onClick={handleGithubSearch}
-      >
-        Submit
-      </Button>
+      <HStack w="full">
+        <Input
+          placeholder="Enter a github username"
+          onChange={handleUsername}
+          value={username}
+        />
+        <Button colorScheme="telegram" ml="3px" onClick={handleGithubSearch}>
+          Submit
+        </Button>
+      </HStack>
 
       {data.data ? (
         <VStack
-          p={2}
-          m={2}
-          w="full"
+          p={6}
+          h="275px"
           bgColor="blue.400"
           borderRadius="lg"
-          borderWidth="thick"
+          borderWidth="medium"
           borderColor="gray.400"
+          align="center"
+          justifyContent="center"
         >
-          <Avatar
-            src={data.data.avatar_url}
-            alignSelf="center"
-            size="3xl"
-            borderWidth="thin"
-            borderColor="black"
-          />
-          <Heading fontSize="lg" fontFamily="mono" fontStyle="oblique">
-            {data.data.name}
-          </Heading>
+          <HStack mt={4} mb={4} justifyContent="space-between" w="100%">
+            <Avatar
+              src={data.data.avatar_url}
+              alignSelf="center"
+              size="lg"
+              borderWidth="thin"
+              borderColor="black"
+            />
+            <Heading
+              fontSize={{ base: 'sm', md: 'medium' }}
+              fontFamily="mono"
+              fontStyle="oblique"
+            >
+              {data.data.name}
+            </Heading>
+          </HStack>
+          <Text fontFamily="sans-serif" spacing={1}>
+            {data.data.bio}
+          </Text>
+
           <List
-            bgColor="whiteAlpha.400"
-            spacing="4px"
-            borderRadius="md"
-            w="full"
-            borderColor="whiteAlpha.400"
-            borderWidth="2px"
+            spacing={1}
+            w="100%"
+            d="flex"
+            flexWrap="wrap"
+            sx={{ gap: '12px' }}
           >
             <ListItem>
               <ListIcon as={FaLocationArrow} />
@@ -105,11 +111,6 @@ export default function SearchGithub() {
               Public Repos: {data.data.public_repos}
             </ListItem>
           </List>
-          <Container>
-            <Text fontWeight="bold" fontFamily="fantasy">
-              {data.data.bio}
-            </Text>
-          </Container>
         </VStack>
       ) : null}
     </VStack>
