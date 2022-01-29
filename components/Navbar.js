@@ -5,7 +5,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <HStack spacing="auto" borderRadius="md" bgColor="blue.400" w="100%">
+    <HStack spacing="auto" bgColor="blue.400" w="100%">
       <Heading size="md" fontFamily="mono">
         Github Search App
       </Heading>
