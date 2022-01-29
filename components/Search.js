@@ -24,7 +24,10 @@ export default function SearchGithub() {
 
   return (
     <Stack w={{ base: '90%', md: '80%', lg: '90%' }}>
-      <Heading size="lg"> Search for Github Repositories!</Heading>
+      <Heading size="lg" alignSelf="center">
+        {' '}
+        Search for Github Repositories!
+      </Heading>
       <HStack w="full">
         <Input
           placeholder="Enter a github username"
@@ -37,10 +40,10 @@ export default function SearchGithub() {
       </HStack>
       {data.data ? (
         <>
-          <Heading size="md">
+          <Heading size="md" alignSelf="center">
             Total Search Reults: {data.data.total_count}
           </Heading>
-          <HStack wrap="wrap">
+          <HStack flexWrap="wrap" justifyContent="space-around">
             {data.data.items.map((user) => {
               console.log(user);
               return (

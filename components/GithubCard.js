@@ -1,7 +1,7 @@
 import {
   Avatar,
   Heading,
-  Stack,
+  VStack,
   List,
   ListItem,
   ListIcon,
@@ -20,22 +20,23 @@ const GithubCard = ({
   public_repos,
 }) => {
   return (
-    <Stack
+    <VStack
       p={4}
+      m={1}
       w="275px"
       h="275px"
       bgColor="blue.400"
       borderRadius="lg"
-      borderWidth="medium"
+      borderWidth="thin"
       borderColor="gray.400"
       align="center"
-      justifyContent="center"
+      justifyContent="space-around"
     >
       <HStack mt={4} justifyContent="space-between" w="100%">
         <Avatar
           src={avatar}
           alignSelf="center"
-          size="xl"
+          size="lg"
           borderWidth="thin"
           borderColor="black"
         />
@@ -48,10 +49,10 @@ const GithubCard = ({
         </Heading>
       </HStack>
 
-      <List spacing={1} w="100%" d="flex" flexWrap="wrap" sx={{ gap: '8px' }}>
+      <List w="100%" d="flex" flexWrap="wrap" sx={{ gap: '8px' }}>
         <ListItem>
           <ListIcon as={LinkIcon} />
-          <Link href={html_url}> {html_url}</Link>
+          <Link href={html_url}>Github: {name}</Link>
         </ListItem>
         <ListItem>
           <ListIcon as={ViewIcon} />
@@ -66,7 +67,7 @@ const GithubCard = ({
           Public Repos: {public_repos.length}
         </ListItem>
       </List>
-    </Stack>
+    </VStack>
   );
 };
 export default GithubCard;
