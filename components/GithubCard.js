@@ -21,19 +21,7 @@ const GithubCard = ({
   id,
 }) => {
   return (
-    <VStack
-      p={4}
-      m={1}
-      w="275px"
-      h="275px"
-      bgColor="blue.400"
-      borderRadius="lg"
-      borderWidth="thin"
-      borderColor="gray.400"
-      align="center"
-      justifyContent="space-around"
-      key={id}
-    >
+    <>
       <HStack mt={4} justifyContent="space-between" w="100%">
         <Avatar
           src={avatar}
@@ -69,7 +57,7 @@ const GithubCard = ({
           Public Repos: {public_repos.length}
         </ListItem>
       </List>
-    </VStack>
+    </>
   );
 };
 export default GithubCard;

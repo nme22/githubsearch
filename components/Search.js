@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, Heading, Stack, HStack, Box } from '@chakra-ui/react';
+import {
+  Input,
+  Button,
+  Heading,
+  Stack,
+  HStack,
+  Box,
+  VStack,
+} from '@chakra-ui/react';
 import GithubCard from './GithubCard';
 import debounce from 'debounce';
 
@@ -76,15 +84,28 @@ export default function SearchGithub() {
             {data.data.items?.map((user) => {
               console.log(user);
               return (
-                <GithubCard
-                  avatar={user.avatar_url}
-                  name={user.login}
-                  html_url={user.html_url}
-                  followers={user.followers_url}
-                  starred_url={user.starred_url}
-                  public_repos={user.repos_url}
-                  id={user.id}
-                />
+                <VStack
+                  p={4}
+                  m={1}
+                  w="275px"
+                  h="275px"
+                  bgColor="blue.400"
+                  borderRadius="lg"
+                  borderWidth="thin"
+                  borderColor="gray.400"
+                  align="center"
+                  justifyContent="space-around"
+                  key={user.id}
+                >
+                  <GithubCard
+                    avatar={user.avatar_url}
+                    name={user.login}
+                    html_url={user.html_url}
+                    followers={user.followers_url}
+                    starred_url={user.starred_url}
+                    public_repos={user.repos_url}
+                  />
+                </VStack>
               );
             })}
           </Stack>
