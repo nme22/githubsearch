@@ -9,7 +9,7 @@ export default function SearchGithub() {
   const [pagenumber, setPage] = useState(1);
 
   useEffect(() => {
-    if (username.length > 0) handleGithubSearch(username, pagenumber);
+    if (username.length > 0) handleGithubSearch();
   }, [pagenumber]);
 
   const handlePageIncrement = () => {
@@ -52,14 +52,14 @@ export default function SearchGithub() {
           Submit
         </Button>
       </HStack>
-      <Box>
+      <HStack justifyContent="center">
         <Button size="md" onClick={handlePageIncrement}>
           Next Page
         </Button>
         <Button size="md" onClick={handlePageDecrement}>
           Previous
         </Button>
-      </Box>
+      </HStack>
 
       {data.data ? (
         <>
