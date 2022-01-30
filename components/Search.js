@@ -83,7 +83,7 @@ export default function SearchGithub() {
                   followers={user.followers_url}
                   starred_url={user.starred_url}
                   public_repos={user.repos_url}
-                  key={user.id}
+                  id={user.id}
                 />
               );
             })}
