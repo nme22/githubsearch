@@ -9,7 +9,7 @@ export default function SearchGithub() {
   const [pagenumber, setPage] = useState(1);
 
   useEffect(() => {
-    if (username.length > 0) handleGithubSearch();
+    handleGithubSearch();
   }, [pagenumber]);
 
   const handlePageIncrement = () => {
