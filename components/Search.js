@@ -10,6 +10,7 @@ export default function SearchGithub() {
 
   useEffect(() => {
     handleGithubSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagenumber]);
 
   const handlePageIncrement = () => {

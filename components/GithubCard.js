@@ -18,6 +18,7 @@ const GithubCard = ({
   followers,
   starred_url,
   public_repos,
+  key,
 }) => {
   return (
     <VStack
@@ -31,6 +32,7 @@ const GithubCard = ({
       borderColor="gray.400"
       align="center"
       justifyContent="space-around"
+      key={key}
     >
       <HStack mt={4} justifyContent="space-between" w="100%">
         <Avatar
