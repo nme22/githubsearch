@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     {
       method: 'GET',
       headers: {
-        Authorization: `${process.env.GITHUB_TOKEN}`,
+        Authorization: `token ${process.env.GITHUB_TOKEN}`,
         'Content-Type': `application/json`,
       },
     }
