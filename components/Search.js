@@ -1,20 +1,36 @@
-import React from 'react';
-import { Input, Button, Heading, Stack, HStack } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Input, Button, Heading, Stack, HStack, Box } from '@chakra-ui/react';
 import GithubCard from './GithubCard';
+import debounce from 'debounce';
 
 export default function SearchGithub() {
   const [username, setUsername] = useState('');
   const [data, setData] = useState({});
+  const [pagenumber, setPage] = useState(0);
+
+  useEffect(() => {
+    if (username.length > 0) {
+    }
+    handleGithubSearch(username, pagenumber);
+  }, [pagenumber]);
+
+  const handlePageIncrement = () => {
+    setPage(pagenumber + 1);
+  };
+  const handlePageDecrement = () => {
+    setPage(pagenumber - 1);
+  };
 
   async function handleGithubSearch() {
     fetch('/api/github', {
       method: 'POST',
-      body: JSON.stringify(username),
+      body: JSON.stringify({
+        username,
+        pagenumber,
+      }),
     })
       .then((response) => response.json())
       .then((data) => setData(data));
-    console.log(data);
   }
 
   function handleUsername(e) {
@@ -38,13 +54,27 @@ export default function SearchGithub() {
           Submit
         </Button>
       </HStack>
+      <Box>
+        <Button size="md" onClick={handlePageIncrement}>
+          Next Page
+        </Button>
+        <Button size="md" onClick={handlePageDecrement}>
+          Previous
+        </Button>
+      </Box>
+
       {data.data ? (
         <>
           <Heading size="md" alignSelf="center">
-            Total Search Reults: {data.data.total_count}
+            Total Search Results: {data.data.total_count}
           </Heading>
-          <HStack flexWrap="wrap" justifyContent="space-around">
-            {data.data.items.map((user) => {
+
+          <Stack
+            flexWrap="wrap"
+            flexDirection="row"
+            justifyContent="space-around"
+          >
+            {data.data.items?.map((user) => {
               console.log(user);
               return (
                 <GithubCard
@@ -57,7 +87,7 @@ export default function SearchGithub() {
                 />
               );
             })}
-          </HStack>
+          </Stack>
         </>
       ) : null}
     </Stack>
