@@ -6,19 +6,17 @@ import debounce from 'debounce';
 export default function SearchGithub() {
   const [username, setUsername] = useState('');
   const [data, setData] = useState({});
-  const [pagenumber, setPage] = useState(0);
+  const [pagenumber, setPage] = useState(1);
 
   useEffect(() => {
-    if (username.length > 0) {
-    }
-    handleGithubSearch(username, pagenumber);
+    if (username.length > 0) handleGithubSearch(username, pagenumber);
   }, [pagenumber]);
 
   const handlePageIncrement = () => {
     setPage(pagenumber + 1);
   };
   const handlePageDecrement = () => {
-    setPage(pagenumber - 1);
+    if (pagenumber > 1) setPage(pagenumber - 1);
   };
 
   async function handleGithubSearch() {
