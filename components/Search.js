@@ -29,7 +29,7 @@ export default function SearchGithub() {
   };
 
   async function handleGithubSearch() {
-    fetch('/api/github', {
+    fetch('/api/Github', {
       method: 'POST',
       body: JSON.stringify({
         username,
