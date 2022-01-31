@@ -6,6 +6,8 @@ import {
   Stack,
   HStack,
   VStack,
+  useToast,
+  Text,
 } from '@chakra-ui/react';
 import GithubCard from './GithubCard';
 
@@ -13,6 +15,7 @@ export default function SearchGithub() {
   const [username, setUsername] = useState('');
   const [data, setData] = useState({});
   const [pagenumber, setPage] = useState(1);
+  const toast = useToast();
 
   useEffect(() => {
     handleGithubSearch();
@@ -21,9 +24,21 @@ export default function SearchGithub() {
 
   const handlePageIncrement = () => {
     if (data.data.total_count > 50) setPage(pagenumber + 1);
+    else {
+      toast({
+        title: 'No addtional results',
+        isClosable: true,
+      });
+    }
   };
   const handlePageDecrement = () => {
     if (pagenumber > 1) setPage(pagenumber - 1);
+    else {
+      toast({
+        title: 'Nothing to go back to',
+        isClosable: true,
+      });
+    }
   };
 
   async function handleGithubSearch() {
@@ -49,6 +64,7 @@ export default function SearchGithub() {
         {' '}
         Search for Github Repositories!
       </Heading>
+
       <HStack w="full">
         <Input
           placeholder="Enter a github username"
@@ -70,9 +86,10 @@ export default function SearchGithub() {
 
       {data.data ? (
         <>
-          <Heading size="md" alignSelf="center">
+          <Heading size="lg" alignSelf="center">
             Total Search Results: {data.data.total_count}
           </Heading>
+          <Text alignSelf="flex-end">Page {pagenumber}</Text>
 
           <Stack
             flexWrap="wrap"
