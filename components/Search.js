@@ -20,7 +20,7 @@ export default function SearchGithub() {
   }, [pagenumber]);
 
   const handlePageIncrement = () => {
-    setPage(pagenumber + 1);
+    if (data.data.total_count > 50) setPage(pagenumber + 1);
   };
   const handlePageDecrement = () => {
     if (pagenumber > 1) setPage(pagenumber - 1);
