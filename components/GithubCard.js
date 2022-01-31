@@ -22,7 +22,7 @@ const GithubCard = ({
 }) => {
   return (
     <>
-      <HStack mt={4} justifyContent="space-between" w="100%">
+      <HStack mt={4} justifyContent="space-around" w="100%">
         <Avatar
           src={avatar}
           alignSelf="center"

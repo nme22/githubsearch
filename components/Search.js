@@ -5,11 +5,9 @@ import {
   Heading,
   Stack,
   HStack,
-  Box,
   VStack,
 } from '@chakra-ui/react';
 import GithubCard from './GithubCard';
-import debounce from 'debounce';
 
 export default function SearchGithub() {
   const [username, setUsername] = useState('');
@@ -82,7 +80,6 @@ export default function SearchGithub() {
             justifyContent="space-around"
           >
             {data.data.items?.map((user) => {
-              console.log(user);
               return (
                 <VStack
                   p={4}
