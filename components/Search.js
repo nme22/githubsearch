@@ -57,6 +57,10 @@ export default function SearchGithub() {
     e.preventDefault();
     setUsername(e.target.value);
   }
+  function search() {
+    setPage(1);
+    handleGithubSearch();
+  }
 
   return (
     <Stack w={{ base: '90%', md: '80%', lg: '90%' }}>
@@ -71,7 +75,7 @@ export default function SearchGithub() {
           onChange={handleUsername}
           value={username}
         />
-        <Button colorScheme="telegram" ml="3px" onClick={handleGithubSearch}>
+        <Button colorScheme="telegram" ml="3px" onClick={search}>
           Submit
         </Button>
       </HStack>
