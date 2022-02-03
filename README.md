@@ -1,7 +1,7 @@
 <h1 align="center">Github Search </h1>
 
 ![badge](https://img.shields.io/badge/license-NONE-blue)<br />
-[Demo] (githubsearch-eta.vercel.app)
+Deployed Site: (https://githubsearch-eta.vercel.app)
 
 ## Description
 
