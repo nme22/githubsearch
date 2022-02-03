@@ -1,6 +1,7 @@
 <h1 align="center">Github Search </h1>
 
-![badge](https://img.shields.io/badge/githubsearch-eta.vercel.app)<br />
+![badge](https://img.shields.io/badge/license-NONE-blue)<br />
+[Demo] (githubsearch-eta.vercel.app)
 
 ## Description
 
@@ -26,7 +27,7 @@
 
 ## License
 
-    githubsearch-eta.vercel.app
+    NONE
     This project has a  NONE license.
 
 ## Contributing
