@@ -42,7 +42,19 @@ const GithubCard = ({
             </Heading>
          </HStack>
 
-         <List w="100%" d="flex" flexWrap="wrap" sx={{ gap: '8px' }}>
+         <List
+            w="100%"
+            d="flex"
+            flexDirection="column"
+            flexWrap="wrap"
+            p={2}
+            borderRadius="sm"
+            sx={{ gap: '8px' }}
+            background="whiteAlpha.400"
+            borderColor="black"
+            borderWidth="1px"
+            borderStyle="double"
+         >
             <ListItem>
                <ListIcon as={LinkIcon} />
                <Link href={html_url}>Github: {name}</Link>
