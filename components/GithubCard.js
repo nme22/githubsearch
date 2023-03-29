@@ -52,8 +52,8 @@ const GithubCard = ({
             sx={{ gap: '8px' }}
             background="whiteAlpha.400"
             borderColor="black"
-            borderWidth="1px"
-            borderStyle="double"
+            borderWidth="2px"
+            borderStyle="medium"
          >
             <ListItem>
                <ListIcon as={LinkIcon} />
